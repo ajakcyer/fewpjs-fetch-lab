@@ -1,6 +1,19 @@
-function fetchBooks(books) {
-  return fetch(books)
+function fetchBooks() {
+  return fetch('https://anapioficeandfire.com/api/books')
+  .then(response => {
+    return response.json()
+  })
+  .then(object => {
+    // debugger
+    renderBooks(object)
+    // renderFifthBook(object)
+    // renderCharacterNum(object, 1031)
+    // totalNumOfPages(object)
+  })
 }
+
+
+
 
 function renderBooks(books) {
   const main = document.querySelector('main')
@@ -11,12 +24,18 @@ function renderBooks(books) {
   })
 }
 
+
+
+
 function renderFifthBook(books){
   const main = document.querySelector('main')
   const h2 = document.createElement('h2')
   h2.innerHTML = books[4].name
   main.appendChild(h2)
 }
+
+
+
 
 function renderCharacterNum(books, num){
   const main = document.querySelector('main')
@@ -46,6 +65,10 @@ function renderCharacterNum(books, num){
 
 }
 
+
+
+
+
 function totalNumOfPages(books){
   const main = document.querySelector('main')
   const h1 = document.createElement('h1')
@@ -60,16 +83,11 @@ function totalNumOfPages(books){
   // return total
 }
 
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
-  fetchBooks('https://anapioficeandfire.com/api/books')
-  .then(response => {
-    return response.json()
-  })
-  .then(object => {
-    // debugger
-    renderBooks(object)
-    // renderFifthBook(object)
-    // renderCharacterNum(object, 1031)
-    // totalNumOfPages(object)
-  })
+  fetchBooks()
 })
